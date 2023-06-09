@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
           children: [
             Center(
                 child: Text(
-                  'Lottery winning  number is: 4',
+                  'Lottery winning  number is: 5',
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 )),
             SizedBox(height: 20),
