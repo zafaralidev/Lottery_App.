@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -12,7 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int x=6;
+  Random random= Random();
+  int x = 6;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,24 +21,87 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Center(child: Text('Lottery App')),
         ),
-        body: Column (
+        body: x==4 ? Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child: Text('Lottery winning  number is: $x',
-            style: TextStyle( fontSize: 20,color: Colors.green),
+            Center(
+                child: Text(
+              'Lottery winning  number is: 4',
+              style: TextStyle(fontSize: 20, color: Colors.black),
             )),
-          Container(
-            height: 60,
-            width: 40,
-            color: Colors.green,
-            child: Text('zafar'),
-          ),
+            SizedBox(height: 20),
+            Container(
+              height: 100,
+              width: 300,
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.4),
+              borderRadius: BorderRadius.circular(6),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.done,
+                      color: Colors.blue,
+                      size: 30,
+                    ),
+                    SizedBox(height: 10),
+                    Text('Congratulation, your number is $x.\n You won !',textAlign: TextAlign.center,),
+                  ],
+                )
+
+              ),
+            ),
           ],
-           ),
+        ) :
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+                child: Text(
+                  'Lottery winning  number is: 4',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                )),
+            SizedBox(height: 20),
+            Container(
+              height: 100,
+              width: 300,
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error,
+                        color: Colors.red,
+                        size: 30,
+                      ),
+                      SizedBox(height: 10),
+                      Text('Better Luck Next Time your number is $x.\n Try Again !',textAlign: TextAlign.center,),
+                    ],
+                  )
+
+              ),
+            ),
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            print('tap');
+          onPressed: () {
+            x=random.nextInt(5);
+
+            setState(() {
+
+            });
           },
           child: Icon(Icons.refresh),
         ),
@@ -45,4 +109,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
